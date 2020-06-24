@@ -42,7 +42,7 @@ public class GetBranchTypesApiController implements GetBranchTypesApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<BranchType>>(objectMapper.readValue("[ {\n  \"ExternalId\" : \"ExternalId\",\n  \"Name\" : \"Name\"\n}, {\n  \"ExternalId\" : \"ExternalId\",\n  \"Name\" : \"Name\"\n} ]", List.class), HttpStatus.OK);
+                return new ResponseEntity<List<BranchType>>(objectMapper.readValue("[ {\n  \"ExternalId\" : \"1234\",\n  \"Name\" : \"Branch-A\"\n}, {\n  \"ExternalId\" : \"5678\",\n  \"Name\" : \"Branch-B\"\n} ]", List.class), HttpStatus.OK);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<List<BranchType>>(HttpStatus.INTERNAL_SERVER_ERROR);
