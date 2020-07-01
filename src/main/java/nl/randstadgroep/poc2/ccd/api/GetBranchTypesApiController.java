@@ -47,6 +47,7 @@ public class GetBranchTypesApiController implements GetBranchTypesApi {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<List<BranchType>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
+
         //}
 
         //return new ResponseEntity<List<BranchType>>(HttpStatus.NOT_IMPLEMENTED);
