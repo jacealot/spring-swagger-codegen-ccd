@@ -40,6 +40,9 @@ public class GetBranchTypesApiController implements GetBranchTypesApi {
 
     public ResponseEntity<List<BranchType>> getBranchTypes() {
         String accept = request.getHeader("Accept");
+
+        log.info("Set Accept value in http header: [" + accept.toString() + "]");
+
         if (accept != null && accept.contains("application/json")) {
             try {
                 return new ResponseEntity<List<BranchType>>(objectMapper.readValue("[ {\n  \"ExternalId\" : \"1234\",\n  \"Name\" : \"Branch-A\"\n}, {\n  \"ExternalId\" : \"5678\",\n  \"Name\" : \"Branch-B\"\n} ]", List.class), HttpStatus.OK);
@@ -48,6 +51,8 @@ public class GetBranchTypesApiController implements GetBranchTypesApi {
                 return new ResponseEntity<List<BranchType>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
 
+        } else {
+            log.error("Set Accept value not 'application/json' in http header");
         }
 
         return new ResponseEntity<List<BranchType>>(HttpStatus.NOT_IMPLEMENTED);

@@ -44,6 +44,9 @@ public class GetBranchesApiController implements GetBranchesApi {
 ,@NotNull @ApiParam(value = "Page to start the search (from page 1)", required = true) @Valid @RequestParam(value = "PageNumber", required = true) Integer pageNumber
 ) {
         String accept = request.getHeader("Accept");
+
+        log.info("Set Accept value in http header: [" + accept.toString() + "]");
+
         if (accept != null && accept.contains("application/json")) {
             try {
                 BranchListPagination branchListPagination = new BranchListPagination();
@@ -63,6 +66,8 @@ public class GetBranchesApiController implements GetBranchesApi {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<BranchListPagination>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
+        } else {
+            log.error("Set Accept value not 'application/json' in http header");
         }
 
         return new ResponseEntity<BranchListPagination>(HttpStatus.NOT_IMPLEMENTED);
