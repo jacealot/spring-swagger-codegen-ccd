@@ -45,6 +45,8 @@ public class GetBranchesApiController implements GetBranchesApi {
 ) {
         String accept = request.getHeader("Accept");
 
+        log.error("Logger test getBranches - Accept value in http header: [" + accept.toString() + "]");
+
         log.info("Set Accept value in http header: [" + accept.toString() + "]");
 
         if (accept != null && accept.contains("application/json")) {
